@@ -3,6 +3,7 @@ package com.carpool.mqttnotification.controller;
 import com.carpool.mqttnotification.model.Notification;
 import com.carpool.mqttnotification.repository.NotificationRepository;
 import com.carpool.mqttnotification.response.CustomResponse;
+import com.carpool.mqttnotification.response.CustomResponseCodes;
 import com.carpool.mqttnotification.service.MqttNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,7 @@ public class NotificationController {
         response.setObjects(notifications);
         response.setMessage("Notification have been created successfully");
         response.setDetails("Operation successfully");
+        response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
         response.setObjects(notifications);
 
         return new ResponseEntity<>(response,HttpStatus.OK);
@@ -69,6 +71,7 @@ public class NotificationController {
             List notifications = new ArrayList();
             notifications.add(notification);
             response.setObjects(notifications);
+            response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
             response.setMessage("Notification have been read successfully");
             response.setDetails("Operation successfully");
             response.setObjects(notifications);
@@ -79,6 +82,7 @@ public class NotificationController {
         }else{
                 CustomResponse<Notification> response = new CustomResponse<>();
                 response.setMessage("RECORD NOT FOUND");
+                response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
                 response.setDetails("There is no notification with specied id in the database");
                 ArrayList errors = new ArrayList();
                 errors.add("Notification not found");
@@ -99,6 +103,7 @@ public class NotificationController {
             response.setObjects(notifications);
             response.setMessage("Operation successfully");
             response.setObjects(notifications);
+            response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
             return new ResponseEntity<>(response,HttpStatus.OK);
 
         }else {
@@ -106,6 +111,7 @@ public class NotificationController {
             CustomResponse<Notification> response = new CustomResponse<>();
             response.setMessage("RECORD NOT FOUND");
             response.setDetails("There are no unread notifications of this user");
+            response.setGeneralErrorCode(CustomResponseCodes.RECORD_NOT_FOUND);
             ArrayList errors = new ArrayList();
             errors.add("Notifications not found");
             response.setErrors(errors);
@@ -126,12 +132,14 @@ public class NotificationController {
             response.setObjects(notifications);
             response.setMessage("Operation successfully");
             response.setObjects(notifications);
+            response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
             return new ResponseEntity<>(response,HttpStatus.OK);
 
         }else {
 
             CustomResponse<Notification> response = new CustomResponse<>();
             response.setMessage("RECORD NOT FOUND");
+            response.setGeneralErrorCode(CustomResponseCodes.RECORD_NOT_FOUND);
             response.setDetails("There are no notifications for this user");
             ArrayList errors = new ArrayList();
             errors.add("Notifications not found");
@@ -153,6 +161,7 @@ public class NotificationController {
 
             response.setObjects(notifications);
             response.setMessage("Operation successfully");
+            response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
             response.setObjects(notifications);
             return new ResponseEntity<>(response,HttpStatus.OK);
 
@@ -160,6 +169,7 @@ public class NotificationController {
 
             CustomResponse<Notification> response = new CustomResponse<>();
             response.setMessage("RECORD NOT FOUND");
+            response.setGeneralErrorCode(CustomResponseCodes.RECORD_NOT_FOUND);
             response.setDetails("There are no unread notifications of this role");
             ArrayList errors = new ArrayList();
             errors.add("Notifications not found");
@@ -181,12 +191,14 @@ public class NotificationController {
             response.setObjects(notifications);
             response.setMessage("Operation successfully");
             response.setObjects(notifications);
+            response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
             return new ResponseEntity<>(response,HttpStatus.OK);
 
         }else {
 
             CustomResponse<Notification> response = new CustomResponse<>();
             response.setMessage("RECORD NOT FOUND");
+            response.setGeneralErrorCode(CustomResponseCodes.RECORD_NOT_FOUND);
             response.setDetails("There are no notifications for this role");
             ArrayList errors = new ArrayList();
             errors.add("Notifications not found");
