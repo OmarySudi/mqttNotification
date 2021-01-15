@@ -1,0 +1,20 @@
+version: "3"
+services:
+
+  spring-mqtt-notification:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: mqtt-notification-image
+    container_name: mqtt-notification
+    restart: unless-stopped
+    ports:
+      - 9091:9091
+    networks:
+      - mqtt
+
+networks:
+  mqtt:
+    driver: bridge
+
+
