@@ -17,7 +17,7 @@ public class MqttNotification implements MqttCallback {
 
         String username = "gfuxuwzr";
         String password = "Z4WwbATYPT6U";
-        String clientId = "AksonCabCarPool";
+        String clientId = "AksonCabCarPool11";
 
         MqttConnectOptions conOpt = new MqttConnectOptions();
         conOpt.setCleanSession(true);
