@@ -64,6 +64,12 @@
 			<version>1.2.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.pubnub</groupId>
+			<artifactId>pubnub-gson</artifactId>
+			<version>4.33.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

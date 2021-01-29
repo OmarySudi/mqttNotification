@@ -5,6 +5,7 @@ import com.carpool.mqttnotification.repository.NotificationRepository;
 import com.carpool.mqttnotification.response.CustomResponse;
 import com.carpool.mqttnotification.response.CustomResponseCodes;
 import com.carpool.mqttnotification.service.MqttNotification;
+import com.carpool.mqttnotification.service.PubNubNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,10 @@ public class NotificationController {
     @Autowired
     MqttNotification mqttNotification;
 
-    @PostMapping(value = "/send-notification")
+    @Autowired
+    PubNubNotification pubNubNotification;
+
+    @PostMapping(value = "/send-mqttnotification")
     public ResponseEntity<CustomResponse<Notification>> sendNotification(@RequestBody Notification notification){
         Notification newNotification = new Notification();
 
@@ -44,6 +48,41 @@ public class NotificationController {
         notificationRepository.save(newNotification);
         System.out.println("Before sending............");
         mqttNotification.sendNotification(newNotification);
+        System.out.println("Notification sent............");
+
+        CustomResponse<Notification> response = new CustomResponse<>();
+        List notifications = new ArrayList();
+        notifications.add(newNotification);
+        response.setObjects(notifications);
+        response.setMessage("Notification have been created successfully");
+        response.setDetails("Operation successfully");
+        response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
+        response.setObjects(notifications);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+
+    }
+
+    @PostMapping(value = "/send-pubnubnotification")
+    public ResponseEntity<CustomResponse<Notification>> sendPubnubNotification(@RequestBody Notification notification){
+        Notification newNotification = new Notification();
+
+        newNotification.setNotification(notification.getNotification());
+        newNotification.setCategory(notification.getCategory());
+        newNotification.setIcons(notification.getIcons());
+        newNotification.setEntintyID(notification.getEntintyID());
+        newNotification.setEntinty_id(notification.getEntinty_id());
+        newNotification.setTopic(notification.getTopic());
+        newNotification.setRole(notification.getRole());
+        newNotification.setUser_id(notification.getUser_id());
+        newNotification.setUserID(notification.getUserID());
+
+        System.out.println("Before saving............");
+
+        notificationRepository.save(newNotification);
+        System.out.println("Before sending............");
+       // mqttNotification.sendNotification(newNotification);
+        pubNubNotification.sendNotification(newNotification);
         System.out.println("Notification sent............");
 
         CustomResponse<Notification> response = new CustomResponse<>();

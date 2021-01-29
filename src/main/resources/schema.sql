@@ -4,11 +4,11 @@ create table if not exists  notifications (
   userID varchar(100) null,
   user_id int(255) null,
   is_read tinyint(4) default 0,
-  topic varchar(1024) null,
+  topic varchar(1024) not null,
   role varchar(100) not null,
-  icons varchar(100) not null,
+  icons varchar(100) null,
   entintyID varchar(100) null,
   entinty_id int(255) null,
-  category varchar(100) not null,
+  category varchar(100) null,
   primary key (id)
 ) engine=innodb ;
