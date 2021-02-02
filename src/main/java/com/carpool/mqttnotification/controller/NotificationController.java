@@ -98,6 +98,41 @@ public class NotificationController {
 
     }
 
+    @PostMapping(value = "/send-push-pubnubnotification")
+    public ResponseEntity<CustomResponse<Notification>> sendPushPubnubNotification(@RequestBody Notification notification){
+        Notification newNotification = new Notification();
+
+        newNotification.setNotification(notification.getNotification());
+        newNotification.setCategory(notification.getCategory());
+        newNotification.setIcons(notification.getIcons());
+        newNotification.setEntintyID(notification.getEntintyID());
+        newNotification.setEntinty_id(notification.getEntinty_id());
+        newNotification.setTopic(notification.getTopic());
+        newNotification.setRole(notification.getRole());
+        newNotification.setUser_id(notification.getUser_id());
+        newNotification.setUserID(notification.getUserID());
+
+//        System.out.println("Before saving............");
+//
+//        notificationRepository.save(newNotification);
+        System.out.println("Before sending............");
+        // mqttNotification.sendNotification(newNotification);
+        pubNubNotification.sendNotification(newNotification);
+        System.out.println("Notification sent............");
+
+        CustomResponse<Notification> response = new CustomResponse<>();
+        List notifications = new ArrayList();
+        notifications.add(newNotification);
+        response.setObjects(notifications);
+        response.setMessage("Notification have been created successfully");
+        response.setDetails("Operation successfully");
+        response.setGeneralErrorCode(CustomResponseCodes.OPERATION_SUCCESSFULLY);
+        response.setObjects(notifications);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+
+    }
+
     @PostMapping(value = "/mark-read/{id}")
     public ResponseEntity<CustomResponse> markNotificationAsRead(@PathVariable(value = "id") Integer id){
         Optional<Notification> optional = notificationRepository.findById(id);
