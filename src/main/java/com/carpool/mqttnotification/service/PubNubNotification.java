@@ -66,6 +66,7 @@ public class PubNubNotification {
         messageJsonObject.addProperty("driverID", notification.getUserID());
         messageJsonObject.addProperty("tripID",notification.getUser_id());
         messageJsonObject.addProperty("routeID",notification.getEntity_id());
+        messageJsonObject.addProperty("status","cancelled");
 
         pubnub.publish()
                 .channel(notification.getTopic())
