@@ -32,11 +32,11 @@ public class Notification {
     @Column(name="icons")
     private String icons;
 
-    @Column(name="entintyID")
-    private String entintyID;
+    @Column(name="entityID")
+    private String entityID;
 
-    @Column(name="entinty_id")
-    private Integer entinty_id;
+    @Column(name="entity_id")
+    private Integer entity_id;
 
     @Column(name="category")
     private String category;
@@ -106,20 +106,20 @@ public class Notification {
         this.icons = icons;
     }
 
-    public String getEntintyID() {
-        return entintyID;
+    public String getEntityID() {
+        return entityID;
     }
 
-    public void setEntintyID(String entintyID) {
-        this.entintyID = entintyID;
+    public void setEntityID(String entintyID) {
+        this.entityID = entintyID;
     }
 
-    public Integer getEntinty_id() {
-        return entinty_id;
+    public Integer getEntity_id() {
+        return entity_id;
     }
 
-    public void setEntinty_id(Integer entinty_id) {
-        this.entinty_id = entinty_id;
+    public void setEntity_id(Integer entinty_id) {
+        this.entity_id = entinty_id;
     }
 
     public String getCategory() {

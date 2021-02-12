@@ -31,10 +31,11 @@ public class PubNubNotification {
 
         final JsonObject metaJsonObject = new JsonObject();
         
-        metaJsonObject.addProperty("routeID",notification.getEntinty_id());
+        metaJsonObject.addProperty("routeID",notification.getEntity_id());
+        //metaJsonObject.addProperty("driverStatus","offline");
 
         messageJsonObject.addProperty("message", notification.getNotification());
-        messageJsonObject.addProperty("customerID", notification.getNotification());
+        messageJsonObject.addProperty("customerID", notification.getEntityID());
 
         pubnub.publish()
                 .channel(notification.getTopic())
@@ -59,7 +60,7 @@ public class PubNubNotification {
 
         final JsonObject metaJsonObject = new JsonObject();
 
-        metaJsonObject.addProperty("routeID",notification.getEntinty_id());
+        metaJsonObject.addProperty("routeID",notification.getEntity_id());
 
         messageJsonObject.addProperty("message", notification.getNotification());
         messageJsonObject.addProperty("customerID", notification.getNotification());

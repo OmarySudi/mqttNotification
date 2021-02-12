@@ -7,8 +7,8 @@ create table if not exists  notifications (
   topic varchar(1024) not null,
   role varchar(100) not null,
   icons varchar(100) null,
-  entintyID varchar(100) null,
-  entinty_id int(255) null,
+  entityID varchar(100) null,
+  entity_id int(255) null,
   category varchar(100) null,
   primary key (id)
 ) engine=innodb ;

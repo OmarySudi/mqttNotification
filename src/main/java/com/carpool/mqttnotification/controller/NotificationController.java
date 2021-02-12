@@ -36,8 +36,8 @@ public class NotificationController {
         newNotification.setNotification(notification.getNotification());
         newNotification.setCategory(notification.getCategory());
         newNotification.setIcons(notification.getIcons());
-        newNotification.setEntintyID(notification.getEntintyID());
-        newNotification.setEntinty_id(notification.getEntinty_id());
+        newNotification.setEntityID(notification.getEntityID());
+        newNotification.setEntity_id(notification.getEntity_id());
         newNotification.setTopic(notification.getTopic());
         newNotification.setRole(notification.getRole());
         newNotification.setUser_id(notification.getUser_id());
@@ -70,8 +70,8 @@ public class NotificationController {
         newNotification.setNotification(notification.getNotification());
         newNotification.setCategory(notification.getCategory());
         newNotification.setIcons(notification.getIcons());
-        newNotification.setEntintyID(notification.getEntintyID());
-        newNotification.setEntinty_id(notification.getEntinty_id());
+        newNotification.setEntityID(notification.getEntityID());
+        newNotification.setEntity_id(notification.getEntity_id());
         newNotification.setTopic(notification.getTopic());
         newNotification.setRole(notification.getRole());
         newNotification.setUser_id(notification.getUser_id());
@@ -105,8 +105,8 @@ public class NotificationController {
         newNotification.setNotification(notification.getNotification());
         newNotification.setCategory(notification.getCategory());
         newNotification.setIcons(notification.getIcons());
-        newNotification.setEntintyID(notification.getEntintyID());
-        newNotification.setEntinty_id(notification.getEntinty_id());
+        newNotification.setEntityID(notification.getEntityID());
+        newNotification.setEntity_id(notification.getEntity_id());
         newNotification.setTopic(notification.getTopic());
         newNotification.setRole(notification.getRole());
         newNotification.setUser_id(notification.getUser_id());
