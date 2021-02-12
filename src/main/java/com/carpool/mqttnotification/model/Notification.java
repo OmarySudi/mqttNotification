@@ -18,7 +18,7 @@ public class Notification {
     private String userID;
 
     @Column(name="user_id")
-    private String user_id;
+    private Integer user_id;
 
     @Column(name="is_read")
     private boolean isRead;
@@ -50,11 +50,11 @@ public class Notification {
         this.userID = userID;
     }
 
-    public String getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 

@@ -30,11 +30,11 @@ public class PubNubNotification {
         final JsonObject messageJsonObject = new JsonObject();
 
         final JsonObject metaJsonObject = new JsonObject();
-        
+
         metaJsonObject.addProperty("routeID",notification.getEntity_id());
-        //metaJsonObject.addProperty("driverStatus","offline");
 
         messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("tripID",notification.getUser_id());
         messageJsonObject.addProperty("customerID", notification.getEntityID());
 
         pubnub.publish()
@@ -54,16 +54,18 @@ public class PubNubNotification {
         return "Test message";
     }
 
-    public String sendCustomerNotification(Notification notification){
+    public String driverCancellTrip(Notification notification){
 
         final JsonObject messageJsonObject = new JsonObject();
 
         final JsonObject metaJsonObject = new JsonObject();
 
-        metaJsonObject.addProperty("routeID",notification.getEntity_id());
+        metaJsonObject.addProperty("customerID",notification.getEntityID());
 
         messageJsonObject.addProperty("message", notification.getNotification());
-        messageJsonObject.addProperty("customerID", notification.getNotification());
+        messageJsonObject.addProperty("driverID", notification.getUserID());
+        messageJsonObject.addProperty("tripID",notification.getUser_id());
+        messageJsonObject.addProperty("routeID",notification.getEntity_id());
 
         pubnub.publish()
                 .channel(notification.getTopic())
