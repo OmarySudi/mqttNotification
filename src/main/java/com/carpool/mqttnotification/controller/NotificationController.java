@@ -82,7 +82,7 @@ public class NotificationController {
         notificationRepository.save(newNotification);
         System.out.println("Before sending............");
        // mqttNotification.sendNotification(newNotification);
-        pubNubNotification.sendNotification(newNotification);
+        pubNubNotification.sendDriverNotification(newNotification);
         System.out.println("Notification sent............");
 
         CustomResponse<Notification> response = new CustomResponse<>();
@@ -117,7 +117,7 @@ public class NotificationController {
 //        notificationRepository.save(newNotification);
         System.out.println("Before sending............");
         // mqttNotification.sendNotification(newNotification);
-        pubNubNotification.sendNotification(newNotification);
+        pubNubNotification.sendDriverNotification(newNotification);
         System.out.println("Notification sent............");
 
         CustomResponse<Notification> response = new CustomResponse<>();

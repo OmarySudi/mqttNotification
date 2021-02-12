@@ -25,7 +25,7 @@ public class PubNubNotification {
 
     }
 
-    public String sendNotification(Notification notification){
+    public String sendDriverNotification(Notification notification){
 
         final JsonObject messageJsonObject = new JsonObject();
 
@@ -49,6 +49,34 @@ public class PubNubNotification {
                           System.out.println("message not published");
                       }
                   });
+
+        return "Test message";
+    }
+
+    public String sendCustomerNotification(Notification notification){
+
+        final JsonObject messageJsonObject = new JsonObject();
+
+        final JsonObject metaJsonObject = new JsonObject();
+
+        metaJsonObject.addProperty("routeID",notification.getEntinty_id());
+
+        messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("customerID", notification.getNotification());
+
+        pubnub.publish()
+                .channel(notification.getTopic())
+                .message(messageJsonObject)
+                .meta(metaJsonObject)
+                .async((result,publishStatus)->{
+                    if(!publishStatus.isError())
+                    {
+                        System.out.println("message published");
+
+                    }else{
+                        System.out.println("message not published");
+                    }
+                });
 
         return "Test message";
     }
