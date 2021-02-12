@@ -36,7 +36,7 @@ public class Notification {
     private String entintyID;
 
     @Column(name="entinty_id")
-    private String entinty_id;
+    private Integer entinty_id;
 
     @Column(name="category")
     private String category;
@@ -114,11 +114,11 @@ public class Notification {
         this.entintyID = entintyID;
     }
 
-    public String getEntinty_id() {
+    public Integer getEntinty_id() {
         return entinty_id;
     }
 
-    public void setEntinty_id(String entinty_id) {
+    public void setEntinty_id(Integer entinty_id) {
         this.entinty_id = entinty_id;
     }
 

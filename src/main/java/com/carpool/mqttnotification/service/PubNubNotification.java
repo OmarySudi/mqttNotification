@@ -19,7 +19,7 @@ public class PubNubNotification {
         this.pnConfiguration = new PNConfiguration();
         this.pnConfiguration.setSubscribeKey("sub-c-31261c0a-2985-11eb-8221-521a7107d7f7");
         this.pnConfiguration.setPublishKey("pub-c-fa9ff42c-0e4d-495f-9b43-fd9c83283f6f");
-        this.pnConfiguration.setUuid("SUDI");
+        this.pnConfiguration.setUuid("AksonCabPubNubPublisher");
 
         this.pubnub = new PubNub(this.pnConfiguration);
 
@@ -31,15 +31,15 @@ public class PubNubNotification {
 
         final JsonObject metaJsonObject = new JsonObject();
         
-        metaJsonObject.addProperty("uuid","SUDI OMARY");
+        metaJsonObject.addProperty("routeID",notification.getEntinty_id());
 
-        messageJsonObject.addProperty("entry", "Earth");
-        messageJsonObject.addProperty("update", "Hello sudi");
-
+        messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("customerID", notification.getNotification());
 
         pubnub.publish()
                 .channel(notification.getTopic())
-                 .message(notification.getNotification())
+                 .message(messageJsonObject)
+                  .meta(metaJsonObject)
                   .async((result,publishStatus)->{
                       if(!publishStatus.isError())
                       {
