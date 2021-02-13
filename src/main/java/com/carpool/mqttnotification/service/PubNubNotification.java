@@ -71,7 +71,7 @@ public class PubNubNotification {
         pubnub.publish()
                 .channel(notification.getTopic())
                 .message(messageJsonObject)
-                .meta(metaJsonObject)
+                 .meta(metaJsonObject)
                 .async((result,publishStatus)->{
                     if(!publishStatus.isError())
                     {
