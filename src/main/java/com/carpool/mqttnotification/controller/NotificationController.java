@@ -1,9 +1,11 @@
 package com.carpool.mqttnotification.controller;
 
+import com.carpool.mqttnotification.model.Message;
 import com.carpool.mqttnotification.model.Notification;
 import com.carpool.mqttnotification.repository.NotificationRepository;
 import com.carpool.mqttnotification.response.CustomResponse;
 import com.carpool.mqttnotification.response.CustomResponseCodes;
+import com.carpool.mqttnotification.service.InfobipNotification;
 import com.carpool.mqttnotification.service.MqttNotification;
 import com.carpool.mqttnotification.service.PubNubNotification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,9 @@ public class NotificationController {
 
     @Autowired
     PubNubNotification pubNubNotification;
+
+    @Autowired
+    InfobipNotification infobipNotification;
 
     @PostMapping(value = "/send-mqttnotification")
     public ResponseEntity<CustomResponse<Notification>> sendNotification(@RequestBody Notification notification){
@@ -353,6 +359,11 @@ public class NotificationController {
             return new ResponseEntity<>(response,HttpStatus.OK);
         }
 
+    }
+
+    @PostMapping(value = "/send-sms")
+    public ResponseEntity<String> SendSMS(@RequestBody Message message){
+        return new ResponseEntity<>(infobipNotification.sendSMS(message),HttpStatus.OK);
     }
 
 }

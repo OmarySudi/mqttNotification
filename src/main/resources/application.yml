@@ -19,3 +19,5 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+
+infobipKey: 9a743f1a0bc3da59c2a468b72940fd74-fe30aee8-0205-49fa-b7c0-6b0b412072e2
