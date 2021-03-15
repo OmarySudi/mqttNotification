@@ -140,7 +140,7 @@ public class NotificationController {
     }
 
     @PostMapping(value = "/customer-cancel-trip")
-    public ResponseEntity<CustomResponse<Notification>> customerCancellTrip(@RequestBody Notification notification){
+    public ResponseEntity<CustomResponse<Notification>> customerCancelTrip(@RequestBody Notification notification){
 
         Notification newNotification = new Notification();
         newNotification.setNotification(notification.getNotification());
