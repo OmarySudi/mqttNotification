@@ -85,6 +85,36 @@ public class PubNubNotification {
         return "Test message";
     }
 
+    public String customerCancellTrip(Notification notification){
+
+        final JsonObject messageJsonObject = new JsonObject();
+
+        final JsonObject metaJsonObject = new JsonObject();
+
+        metaJsonObject.addProperty("driverID",notification.getEntityID());
+
+        messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("customerID", notification.getUserID());
+        messageJsonObject.addProperty("tripID",notification.getUser_id());
+        messageJsonObject.addProperty("routeID",notification.getEntity_id());
+        messageJsonObject.addProperty("status","cancelled");
+
+        pubnub.publish()
+                .channel(notification.getTopic())
+                .message(messageJsonObject)
+                .meta(metaJsonObject)
+                .async((result,publishStatus)->{
+                    if(!publishStatus.isError())
+                    {
+                        System.out.println("message published");
+
+                    }else{
+                        System.out.println("message not published");
+                    }
+                });
+
+        return "Test message";
+    }
 
     public String driverAcceptTrip(Notification notification){
 
