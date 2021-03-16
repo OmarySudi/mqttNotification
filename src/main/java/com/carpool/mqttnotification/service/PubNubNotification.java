@@ -146,4 +146,66 @@ public class PubNubNotification {
 
         return "Test message";
     }
+
+    public String driverStartTrip(Notification notification){
+
+        final JsonObject messageJsonObject = new JsonObject();
+
+        final JsonObject metaJsonObject = new JsonObject();
+
+        metaJsonObject.addProperty("customerID",notification.getEntityID());
+
+        messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("driverID", notification.getUserID());
+        messageJsonObject.addProperty("tripID",notification.getUser_id());
+        messageJsonObject.addProperty("routeID",notification.getEntity_id());
+        messageJsonObject.addProperty("status","started");
+
+        pubnub.publish()
+                .channel(notification.getTopic())
+                .message(messageJsonObject)
+                .meta(metaJsonObject)
+                .async((result,publishStatus)->{
+                    if(!publishStatus.isError())
+                    {
+                        System.out.println("message published");
+
+                    }else{
+                        System.out.println("message not published");
+                    }
+                });
+
+        return "Test message";
+    }
+
+    public String driverEndTrip(Notification notification){
+
+        final JsonObject messageJsonObject = new JsonObject();
+
+        final JsonObject metaJsonObject = new JsonObject();
+
+        metaJsonObject.addProperty("customerID",notification.getEntityID());
+
+        messageJsonObject.addProperty("message", notification.getNotification());
+        messageJsonObject.addProperty("driverID", notification.getUserID());
+        messageJsonObject.addProperty("tripID",notification.getUser_id());
+        messageJsonObject.addProperty("routeID",notification.getEntity_id());
+        messageJsonObject.addProperty("status","ended");
+
+        pubnub.publish()
+                .channel(notification.getTopic())
+                .message(messageJsonObject)
+                .meta(metaJsonObject)
+                .async((result,publishStatus)->{
+                    if(!publishStatus.isError())
+                    {
+                        System.out.println("message published");
+
+                    }else{
+                        System.out.println("message not published");
+                    }
+                });
+
+        return "Test message";
+    }
 }
