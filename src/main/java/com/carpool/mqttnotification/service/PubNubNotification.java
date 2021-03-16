@@ -36,6 +36,7 @@ public class PubNubNotification {
         messageJsonObject.addProperty("message", notification.getNotification());
         messageJsonObject.addProperty("tripID",notification.getUser_id());
         messageJsonObject.addProperty("customerID", notification.getEntityID());
+        messageJsonObject.addProperty("passengers",3);
 
         pubnub.publish()
                 .channel(notification.getTopic())
